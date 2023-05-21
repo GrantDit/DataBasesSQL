@@ -1,0 +1,57 @@
+CREATE DATABASE skypro;
+\c skypro
+
+CREATE TABLE employee (
+        id BIGSERIAL NOT NULL PRIMARY KEY,
+        first_name VARCHAR(50) NOT NULL,
+        last_name VARCHAR(50) NOT NULL,
+        gender VARCHAR(6) NOT NULL,
+        age INT NOT NULL
+        );
+
+INSERT INTO employee (
+        first_name ,last_name ,gender , age)
+        VALUES ('Kirill' ,'Gavrish' ,'man' ,23);
+        INSERT 0 1
+        SELECT * FROM employee;
+        id | first_name | last_name | gender | age
+        ----+------------+-----------+--------+-----
+        1 | Kirill     | Gavrish   | man    |  23
+
+INSERT INTO employee (
+        first_name ,last_name ,gender , age)
+        VALUES ('Ivan' ,'Ivanov' ,'man' ,33);
+        INSERT 0 1
+        SELECT * FROM employee;
+        id | first_name | last_name | gender | age
+        ----+------------+-----------+--------+-----
+        1 | Kirill     | Gavrish   | man    |  23
+        2 | Ivan       | Ivanov    | man    |  33
+
+INSERT INTO employee (
+        first_name ,last_name ,gender , age)
+        VALUES ('Petr' ,'Petrov' ,'man' ,13);
+
+SELECT * FROM employee;
+        id | first_name | last_name | gender | age
+        ----+------------+-----------+--------+-----
+        1 | Kirill     | Gavrish   | man    |  23
+        2 | Ivan       | Ivanov    | man    |  33
+        3 | Petr       | Petrov    | man    |  13
+
+UPDATE employee SET (first_name, last_name, gender, age) = ('Egor', 'Egorov', 'man', 20) WHERE id = 1;
+
+        SELECT * FROM employee;
+        id | first_name | last_name | gender | age
+        ----+------------+-----------+--------+-----
+        2 | Ivan       | Ivanov    | man    |  33
+        3 | Petr       | Petrov    | man    |  13
+        1 | Egor       | Egorov    | man    |  20
+
+        DELETE FROM employee WHERE id = 2;
+
+        SELECT * FROM employee;
+        id | first_name | last_name | gender | age
+        ----+------------+-----------+--------+-----
+        3 | Petr       | Petrov    | man    |  13
+        1 | Egor       | Egorov    | man    |  20

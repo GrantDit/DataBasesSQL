@@ -1,0 +1,82 @@
+skypro=# SELECT*FROM employee;
+ id | first_name | last_name | gender | age | city_id
+----+------------+-----------+--------+-----+---------
+  1 | Petr       | Petrov    | man    |  20 |
+  2 | Ivan       | Ivanov    | man    |  25 |
+  3 | Dima       | Petrov    | man    |  27 |
+  4 | Ksenya     | Ivanova   | woman  |  32 |
+
+skypro=# SELECT*FROM city;
+ city_id |   city_name
+---------+---------------
+       1 | N.NOVGOROD
+       2 | MOSCOW
+       3 | ST.PETERSBURG
+       4 | VLADIMIR
+
+skypro=# SELECT first_name, last_name, city_name
+skypro-# FROM employee INNER JOIN city ON employee.city_id=city.city_id;
+
+ first_name | last_name | city_name
+------------+-----------+-----------
+
+skypro=# SELECT city_name, first_name, last_name
+skypro-# FROM city  RIGHT JOIN employee  ON city.city_id=employee.city_id;
+
+ city_name | first_name | last_name
+-----------+------------+-----------
+           | Petr       | Petrov
+           | Ivan       | Ivanov
+           | Dima       | Petrov
+           | Ksenya     | Ivanova
+
+skypro=# SELECT first_name, city_name
+skypro-# FROM employee FULL JOIN city ON employee.city_id=city.city_id;
+
+ first_name |   city_name
+------------+---------------
+ Petr       |
+ Ivan       |
+ Dima       |
+ Ksenya     |
+            | MOSCOW
+            | VLADIMIR
+            | N.NOVGOROD
+            | ST.PETERSBURG
+
+
+skypro=# SELECT*FROM employee;
+ id | first_name | last_name | gender | age | city_id
+----+------------+-----------+--------+-----+---------
+  1 | Petr       | Petrov    | man    |  20 |
+  2 | Ivan       | Ivanov    | man    |  25 |
+  3 | Dima       | Petrov    | man    |  27 |
+  4 | Ksenya     | Ivanova   | woman  |  32 |
+
+skypro=# SELECT*FROM city;
+ city_id |   city_name
+---------+---------------
+       1 | N.NOVGOROD
+       2 | MOSCOW
+       3 | ST.PETERSBURG
+       4 | VLADIMIR
+
+skypro=# SELECT first_name,city_name FROM employee CROSS JOIN city;
+ first_name |   city_name
+------------+---------------
+ Petr       | N.NOVGOROD
+ Ivan       | N.NOVGOROD
+ Dima       | N.NOVGOROD
+ Ksenya     | N.NOVGOROD
+ Petr       | MOSCOW
+ Ivan       | MOSCOW
+ Dima       | MOSCOW
+ Ksenya     | MOSCOW
+ Petr       | ST.PETERSBURG
+ Ivan       | ST.PETERSBURG
+ Dima       | ST.PETERSBURG
+ Ksenya     | ST.PETERSBURG
+ Petr       | VLADIMIR
+ Ivan       | VLADIMIR
+ Dima       | VLADIMIR
+ Ksenya     | VLADIMIR
